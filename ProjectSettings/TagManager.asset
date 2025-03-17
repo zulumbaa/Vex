@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Player
+    uniqueID: 485291789
+    locked: 0
+  - name: FrontGround
+    uniqueID: 3548999645
+    locked: 0
