@@ -17,7 +17,7 @@ public class InteractablePressurePlate : MonoBehaviour
     bool pressed = false;
     bool enabledCol = true;
     float activatingTimer = 0;
-    float disablingTimer = 0;
+    //float disablingTimer = 0;
 
     [Header("Events")]
 

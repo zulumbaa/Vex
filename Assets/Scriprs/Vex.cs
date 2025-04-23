@@ -5,6 +5,10 @@ using UnityEngine;
 public class Vex : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
+    public float max_health_index = 30.0f;
+    private float curr_health_index = 30.0f;
+
+    public PanicIconController icon_controller;
     private Animator animator;
     private Rigidbody2D rb;
 
@@ -52,5 +56,19 @@ public class Vex : MonoBehaviour
             animator.SetFloat("MoveX", lastMoveX);
             animator.SetFloat("MoveY", lastMoveY);
         }
+    }
+
+    private void OnDamage(float damage)
+    {
+        curr_health_index -= damage;
+        if(curr_health_index <= 0)
+        {
+            Death();
+        }
+        icon_controller.panicLevel = curr_health_index / max_health_index * 100;
+    }
+    private void Death()
+    {
+
     }
 }
