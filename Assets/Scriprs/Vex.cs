@@ -50,7 +50,6 @@ public class Vex : MonoBehaviour
         if (isShooting)
         {
             rb.velocity = Vector2.zero;
-            animator.SetBool("IsMoving", false);
             animator.SetFloat("MoveX", lastMoveX);
             animator.SetFloat("MoveY", lastMoveY);
             return;
@@ -112,7 +111,13 @@ public class Vex : MonoBehaviour
 
     IEnumerator ResetShootFlag()
     {
-        yield return new WaitForSeconds(0.5f); 
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+
+        while (!(state.IsName("LightShooting") && state.normalizedTime >= 1f))
+        {
+            yield return null;
+            state = animator.GetCurrentAnimatorStateInfo(0);
+        }
         animator.SetBool("WasShooted", false);
         lightBeam.SetActive(false);
         isShooting = false;
